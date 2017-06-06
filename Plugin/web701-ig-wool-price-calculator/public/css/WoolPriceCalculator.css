@@ -1,0 +1,91 @@
+/* Style for contest form
+   original source
+   https://www.sanwebe.com/2014/08/css-html-forms-designs
+*/
+.w701igwpc-form-style {
+    margin: 0px;
+    /*margin:10px auto;*/
+    max-width: 500px;
+    padding: 0px;
+    /*padding: 20px 12px 10px 20px;*/
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.w701igwpc-form-style li {
+    padding: 0;
+    display: block;
+    list-style: none;
+    margin: 10px 0 0 0;
+}
+.w701igwpc-form-style label{
+    margin:0 0 3px 0;
+    padding:0px;
+    display:block;
+    font-weight: bold;
+}
+.w701igwpc-form-style input[type=text],
+.w701igwpc-form-style input[type=date],
+.w701igwpc-form-style input[type=datetime],
+.w701igwpc-form-style input[type=number],
+.w701igwpc-form-style input[type=search],
+.w701igwpc-form-style input[type=time],
+.w701igwpc-form-style input[type=url],
+.w701igwpc-form-style input[type=email],
+.w701igwpc-form-style input[type=tel],
+textarea,
+select{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border:1px solid #BEBEBE;
+    padding: 7px;
+    margin:0px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+}
+.w701igwpc-form-style input[type=text]:focus,
+.w701igwpc-form-style input[type=date]:focus,
+.w701igwpc-form-style input[type=datetime]:focus,
+.w701igwpc-form-style input[type=number]:focus,
+.w701igwpc-form-style input[type=search]:focus,
+.w701igwpc-form-style input[type=time]:focus,
+.w701igwpc-form-style input[type=url]:focus,
+.w701igwpc-form-style input[type=email]:focus,
+.w701igwpc-form-style input[type=tel]:focus,
+.w701igwpc-form-style textarea:focus,
+.w701igwpc-form-style select:focus{
+    -moz-box-shadow: 0 0 8px #88D5E9;
+    -webkit-box-shadow: 0 0 8px #88D5E9;
+    box-shadow: 0 0 8px #88D5E9;
+    border: 1px solid #88D5E9;
+}
+.w701igwpc-form-style .field-divided{
+    width: 49%;
+}
+
+.w701igwpc-form-style .field-long{
+    width: 100%;
+}
+.w701igwpc-form-style .field-select{
+    width: 100%;
+}
+.w701igwpc-form-style .field-textarea{
+    height: 100px;
+}
+.w701igwpc-form-style input[type=submit], .w701igwpc-form-style input[type=button]{
+    background: #4B99AD;
+    padding: 8px 15px 8px 15px;
+    border: none;
+    color: #fff;
+}
+.w701igwpc-form-style input[type=submit]:hover, .w701igwpc-form-style input[type=button]:hover{
+    background: #4691A4;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+}
+.w701igwpc-form-style .required{
+    color:red;
+}
