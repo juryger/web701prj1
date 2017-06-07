@@ -24,17 +24,7 @@ function w701igwpc_on_setup_plugin()
 {
     w701igwpc_log('WoolPriceCalculator Plugin [w701igwpc]: init');
 
-    function w701igwpc_show_calculator()
-    {
-        w701igwpc_log('WoolPriceCalculator Plugin [w701igwpc]: executing shortcode [w701igwpc_calculator]...');
-
-        ob_start();
-        require 'WoolPriceCalculator.php';
-        $return = ob_get_flush();
-
-        // always return
-        return $return;
-    }
+    w701igwpc_register_custom_css_js();
 
     if (shortcode_exists('w701igwpc_calculator') == false )
     {
@@ -44,6 +34,33 @@ function w701igwpc_on_setup_plugin()
     }
 }
 add_action( 'init', 'w701igwpc_on_setup_plugin' );
+
+function w701igwpc_register_custom_css_js()
+{
+    //registering custom javascript and css
+    wp_register_script('WoolPriceCalculator', plugins_url('public/js/WoolPriceCalculator.js', __FILE__));
+    wp_register_style('WoolPriceCalculator', plugins_url('public/css/WoolPriceCalculator.css', __FILE__));
+}
+
+function w701igwpc_show_calculator()
+{
+    w701igwpc_log('WoolPriceCalculator Plugin [w701igwpc]: executing shortcode [w701igwpc_calculator]...');
+
+    ob_start();
+    require 'WoolPriceCalculator.php';
+    //$return = ob_get_flush();
+    $return = ob_get_contents();
+    ob_end_clean();
+
+    // always return
+    return $return;
+}
+
+function w701igwpc_enqueue_css_js(){
+    wp_enqueue_script('WoolPriceCalculator');
+    wp_enqueue_style( 'WoolPriceCalculator' );
+}
+add_action('wp_enqueue_scripts', 'w701igwpc_enqueue_css_js');
 
 function w701igwpc_on_activate()
 {
