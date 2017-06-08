@@ -38,7 +38,7 @@ add_action( 'init', 'w701igwpc_on_setup_plugin' );
 function w701igwpc_register_custom_css_js()
 {
     //registering custom javascript and css
-    wp_register_script('WoolPriceCalculator', plugins_url('public/js/WoolPriceCalculator.js', __FILE__));
+    wp_register_script('WoolPriceCalculator', plugins_url('public/js/WoolPriceCalculator.js', __FILE__), array('jquery'));
     wp_register_style('WoolPriceCalculator', plugins_url('public/css/WoolPriceCalculator.css', __FILE__));
 }
 
@@ -57,10 +57,31 @@ function w701igwpc_show_calculator()
 }
 
 function w701igwpc_enqueue_css_js(){
+    w701igwpc_log('WoolPriceCalculator Plugin [w701igwpc]: enqueue css and js files (ajax_url)');
+
     wp_enqueue_script('WoolPriceCalculator');
     wp_enqueue_style( 'WoolPriceCalculator' );
+
+    wp_localize_script( 'admin_ajax_front', 'front', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
 }
 add_action('wp_enqueue_scripts', 'w701igwpc_enqueue_css_js');
+
+function w701igwpc_calculate_price_action() {
+    w701igwpc_log('WoolPriceCalculator Plugin [w701igwpc]: action called - calculate_price_action');
+
+    $fiberDiameter = $_POST['fiberDiameter'];
+    $fiberLength = $_POST['fiberLength'];
+    $fiberStrength = $_POST['fiberStrength'];
+    $woolColour = $_POST['woolColour'];
+
+    echo 'Your price: ' . $fiberDiameter . ', ' . $fiberLength . ', ' . $fiberStrength . ',' . $woolColour;
+
+    die();
+}
+add_action('wp_ajax_nopriv_w701igwpc_calculate_price_action', 'w701igwpc_calculate_price_action');
+add_action('wp_ajax_w701igwpc_calculate_price_action', 'w701igwpc_calculate_price_action');
 
 function w701igwpc_on_activate()
 {
