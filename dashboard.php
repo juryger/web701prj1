@@ -27,17 +27,24 @@ if (!defined('ABSPATH')) {
  * Author: Iurii Gerasimov
  * Date: 03.06.2017
  */
+ 
+$isCustomerRole = false;
+$isGrowerRole = false;
+
 $userId = get_current_user_id();
 if ($userId > 0) {
+	error_log('Current user id: ' . $userId);
 	$userInfo = new WP_User( $userId );
-	if ( !empty( $userInfo->roles ) && is_array( $userInfo->roles ) ) {
+	if ( !empty( $userInfo->roles ) && is_array( $userInfo->roles ) ) {		
 		foreach ( $userInfo->roles as $role ) {
+			error_log('-> role item: ' . $role);
 			If (strcasecmp($role, "customer") == 0)
 				$isCustomerRole = true;
-			If (strcasecmp($role, "vendor") == 0)
-				$isVendorRole = true;
+			If (strcasecmp($role, "grower") == 0 || strcasecmp($role, "vendor") == 0 || strcasecmp($role, "seller") == 0)
+				$isGrowerRole = true;
 		}
 	}
+	error_log('Current user role. IsGrower? ' . var_export($isGrowerRole, true) . ', IsCustomer? ' . var_export($isCustomerRole, true));
 }
 
 if ($isCustomerRole) {
@@ -52,7 +59,7 @@ if ($isCustomerRole) {
 	do_action('woocommerce_account_address');
 
 	do_action('woocommerce_account_editaccount');
-} else if ($isVendorRole) {
+} else if ($isGrowerRole) {
 	/**
 	 *  Dokan Dashboard Template
 	 *
@@ -63,6 +70,7 @@ if ($isCustomerRole) {
 	 *  @package dokan
 	 */
 ?>
+<div class="dokan-dashboard">
 <div class="dokan-dashboard-wrap">
 	<?php
 
@@ -162,5 +170,11 @@ if ($isCustomerRole) {
 	?>
 
 </div><!-- .dokan-dashboard-wrap -->
+</div><!-- .dokan-dashboard -->
 <?php
 }
+else {?>
+<h5>Your account should be assigned to Customer or Grower role</h5>
+<?php
+}
+?>

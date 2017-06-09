@@ -1,0 +1,8 @@
+li.menu-item > a { color: #fff; font-weight: bold !important; }
+li.menu-item:hover > a { color: #fcf902 !important; }
+li.current_page_item > a { color: #ffcf00 !important; }
+
+div.u-column1.col-1 { float: left; width: 32%; }
+div.u-column2.col-2 { float: left; width: 65%; }
+
+.page-id-66 div.content { padding-top: 0px !important; }

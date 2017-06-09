@@ -39,22 +39,11 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$fiberStrength = $_POST['fiberStrength'];
 	$woolColour = $_POST['woolColour'];
 
-	echo 'Request parameters: ' . $fiberDiameter . ', ' . $fiberLength . ', ' . $fiberStrength . ',' . $woolColour .'\n';
-
 	$woolType = GetWoolType($fiberDiameter);
-	echo 'Defined wool type: ' . $woolType . '\n';
-
 	$price = GetWoolBasePrice($fiberDiameter);
-	echo 'Base price: ' . $price . '\n';
-
 	$price += CalculateFiberLengthDiscount($fiberLength, $woolType);
-	echo 'Base price after calc FiberLength discount: ' . $price . ' $/kg';
-
 	$price += CalculateFiberStrengthDiscount($fiberStrength, $woolType);
-	echo 'Base price after calc FiberStrength discount: ' . $price . ' $/kg';
-
 	$price += CalculateWooolColourDiscount($woolColour, $woolType);
-	echo 'Base price after calc FiberStrength discount: ' . $price . ' $/kg';
 
 	echo 'Wool price: ' . $price . ' $/kg';
 }
